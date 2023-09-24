@@ -4,57 +4,38 @@ public class Student
 {
     private Course[] _courses;
     private int _totalCredits;
+    // ReSharper disable once InconsistentNaming
     private const int _maxCourses = 6;
     private int _currentCoursesTotal;
-    private string _studentName;
+    private string? _studentName;
     
-    public Student(string name, int numCourses)
+    public Student(string? name, int numCourses)
     {
         StudentName = name;
         _totalCredits = 0;
         _currentCoursesTotal = 0;
-
-        if (numCourses <= 0)
+        _courses = numCourses switch
         {
-            _courses = new Course[3];
-        }
-        else if (numCourses > _maxCourses)
-        {
-            _courses = new Course[_maxCourses];
-        }
-        else
-        {
-            _courses = new Course[numCourses];
-        }
+            <= 0 => new Course[3],
+            > _maxCourses => new Course[_maxCourses],
+            _ => new Course[numCourses]
+        };
     }
     
-    public string StudentName
+    public string? StudentName
     {
         get => _studentName;
-        set
-        {
-            if(value is null)
-            {
-                _studentName = "Unknown";
-            }
-            else
-            {
-                _studentName = value;
-            }
-        }
+        set => _studentName = value ?? "Unknown";
     }
 
-    public int CurrentNumOfCourses
-    {
-        get => _currentCoursesTotal;
-    }
+    public int CurrentNumOfCourses => _currentCoursesTotal;
 
-    public ref Course[] GetAllCourses()
+    public ref Course[]? GetAllCourses()
     {
         return ref _courses;
     }
 
-    public bool AddCourse(Course course)
+    public bool AddCourse(Course? course)
     {
         if (CurrentNumOfCourses >= _maxCourses || course == null ||
             FindCourseIndex(course.CourseCode, course.CourseNumber) != -1) return false;
@@ -65,7 +46,7 @@ public class Student
 
     }
 
-    public Course RemoveCourse(string courseCode, int courseNumber)
+    public Course? RemoveCourse(string courseCode, int courseNumber)
     {
         var courseIndex = FindCourseIndex(courseCode, courseNumber);
 
@@ -80,7 +61,7 @@ public class Student
         return null;
     }
 
-    public Course FindCourse(string courseCode, int courseNumber)
+    public Course? FindCourse(string courseCode, int courseNumber)
     {
         var courseIndex = FindCourseIndex(courseCode, courseNumber);
 
@@ -95,12 +76,19 @@ public class Student
     
     private int FindCourseIndex(string courseCode, int courseNumber)
     {
-        for (var i = 0; i < _courses.Length; i++)
+        try
         {
-            if (_courses[i].CourseCode == courseCode && _courses[i].CourseNumber == courseNumber)
+            for (var i = 0; i < _courses.Length; i++)
             {
-                return i;
+                if (string.Equals(_courses[i].CourseCode, courseCode) && _courses[i].CourseNumber == courseNumber)
+                {
+                    return i;
+                }
             }
+        }
+        catch (NullReferenceException)
+        {
+            
         }
 
         return -1;
@@ -108,13 +96,7 @@ public class Student
 
     public int CalcTotalCredits()
     {
-        var totalCredits = 0;
-
-        for (var i = 0; i < _courses.Length; i++)
-        {
-            totalCredits += _courses[i].CourseCredit;
-        }
-
-        return totalCredits;
+        _totalCredits = _courses.Sum(course => course.CourseCredit);
+        return _totalCredits;
     }
 }

@@ -54,7 +54,7 @@ class Program
         static void AddCourse(Student student)
         {
             Console.Write("Enter the 3 letter course code: ");
-            string courseCode = Convert.ToString(Console.ReadLine());
+            string? courseCode = Console.ReadLine();
             
             Console.Write("Enter the 4 digit course number: ");
             int courseNumber = Convert.ToInt32(Console.ReadLine());
@@ -64,8 +64,8 @@ class Program
 
             Course course = new Course(courseCode, courseNumber, courseCredit);
             
-            if(student.AddCourse(course)) Console.WriteLine($"{course} added");
-            else Console.WriteLine($"Unable to add {course}");
+            if(student.AddCourse(course)) Console.WriteLine($"{course} added\n");
+            else Console.WriteLine($"Unable to add {course}\n");
         }
 
         static void FindCourse(Student student)
@@ -78,16 +78,37 @@ class Program
 
             Course course = student.FindCourse(courseCode, courseNumber);
 
-            if (course is not null) Console.WriteLine($"Found course: {course}");
-            else Console.WriteLine($"No course found matching: {course}");
+            if (course is not null) Console.WriteLine($"Found course: {course}\n");
+            else Console.WriteLine($"No course found matching: {courseCode} {courseNumber}\n");
         }
 
         static void RemoveCourse(Student student)
         {
+            Console.Write("Enter the 3 letter course code: ");
+            string courseCode = Console.ReadLine();
+            
+            Console.Write("Enter the 4 digit course number: ");
+            int courseNumber = Convert.ToInt32(Console.ReadLine());
+
+            Course course = student.RemoveCourse(courseCode, courseNumber);
+            
+            if(course is not null) Console.WriteLine($"Removed course: {course}\n");
+            else Console.WriteLine($"No course to remove matching: {courseCode} {courseNumber}\n");
         }
 
         static void ListCourses(Student student)
         {
+            try
+            {
+                var courses = student.GetAllCourses();
+                
+                Console.WriteLine($"Courses for {student.StudentName}\n{courses?.ToString()}");
+                Console.WriteLine($"Total credits: {student.CalcTotalCredits()}\n");
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("No courses found.\n");
+            };
         }
     }
 }

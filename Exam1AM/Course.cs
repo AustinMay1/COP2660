@@ -2,9 +2,16 @@ namespace Exam1AM;
 
 public class Course
 {
-    private string _courseCode;
+    private string? _courseCode;
     private int _courseNumber;
     private int _courseCredit;
+
+    public Course()
+    {
+        CourseCode = null;
+        CourseNumber = 1000;
+        CourseCredit = 3;
+    }
     
     public Course(string courseCode, int courseNumber, int courseCredit)
     {
@@ -13,20 +20,10 @@ public class Course
         CourseCredit = courseCredit;
     }
 
-    public string CourseCode
+    public string? CourseCode
     {
         get => _courseCode;
-        set
-        {
-            if(value is null)
-            {
-                _courseCode = String.Empty;
-            }
-            else
-            {
-                _courseCode = value;
-            }
-        }
+        set => _courseCode = value?.ToUpper() ?? string.Empty;
     }
 
     public int CourseNumber
