@@ -98,17 +98,25 @@ class Program
 
         static void ListCourses(Student student)
         {
-            try
+            if(student.CurrentNumOfCourses > 0) 
             {
                 var courses = student.GetAllCourses();
                 
-                Console.WriteLine($"Courses for {student.StudentName}\n{courses?.ToString()}");
+                foreach(var course in courses)
+                {
+                    if(course is not null) 
+                    {
+                        Console.WriteLine($"{course}");
+                    }
+                }
+
                 Console.WriteLine($"Total credits: {student.CalcTotalCredits()}\n");
             }
-            catch (NullReferenceException)
+            else 
             {
                 Console.WriteLine("No courses found.\n");
-            };
+            }
+
         }
     }
 }

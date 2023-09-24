@@ -30,7 +30,7 @@ public class Student
 
     public int CurrentNumOfCourses => _currentCoursesTotal;
 
-    public ref Course[]? GetAllCourses()
+    public ref Course[] GetAllCourses()
     {
         return ref _courses;
     }
@@ -96,7 +96,14 @@ public class Student
 
     public int CalcTotalCredits()
     {
-        _totalCredits = _courses.Sum(course => course.CourseCredit);
+        foreach(var course in _courses) 
+        {
+            if(course is not null)
+            {
+                _totalCredits += course.CourseCredit;
+            }
+        };
+        
         return _totalCredits;
     }
 }
