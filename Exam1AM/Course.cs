@@ -5,15 +5,8 @@ public class Course
     private string? _courseCode;
     private int _courseNumber;
     private int _courseCredit;
-
-    public Course()
-    {
-        CourseCode = null;
-        CourseNumber = 1000;
-        CourseCredit = 3;
-    }
     
-    public Course(string courseCode, int courseNumber, int courseCredit)
+    public Course(string? courseCode, int courseNumber, int courseCredit)
     {
         CourseCode = courseCode;
         CourseNumber = courseNumber;

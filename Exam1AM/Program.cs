@@ -1,4 +1,6 @@
-﻿namespace Exam1AM;
+﻿using System.Text.RegularExpressions;
+
+namespace Exam1AM;
 
 class Program
 {
@@ -20,6 +22,8 @@ class Program
 
         static uint Menu()
         {
+            uint choice;
+            
             Console.WriteLine("Enter 1 to add a course");
             Console.WriteLine("Enter 2 to find a course");
             Console.WriteLine("Enter 3 to remove a course");
@@ -27,7 +31,14 @@ class Program
             Console.WriteLine("Enter 99 to quit");
             Console.Write("Please enter a choice: ");
 
-            uint choice = Convert.ToUInt16(Console.ReadLine());
+            try
+            { 
+                choice = Convert.ToUInt16(Console.ReadLine());
+            }
+            catch (FormatException)
+            { 
+                choice = 0;
+            }
 
             return choice;
         }
@@ -51,49 +62,65 @@ class Program
             }
         }
 
+        static string GetValidInput(string prompt, string pattern)
+        {
+            string input;
+
+            do
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+            } while (!Regex.IsMatch(input, pattern));
+
+            return input;
+        }
+
         static void AddCourse(Student student)
         {
-            Console.Write("Enter the 3 letter course code: ");
-            string? courseCode = Console.ReadLine();
+            string courseCode = GetValidInput("Please enter the 3 letter course code: ", @"\b[a-zA-Z]{3}\b");
+            string courseNumber = GetValidInput("Enter the 4 digit course number: ", @"\b[0-9]{4}\b");
+            string courseCredit = GetValidInput("Enter the 1 digit course credit amount: ", @"\b[0-9]{1}\b");
             
-            Console.Write("Enter the 4 digit course number: ");
-            int courseNumber = Convert.ToInt32(Console.ReadLine());
-            
-            Console.Write("Enter the 1 digit course credit amount: ");
-            int courseCredit = Convert.ToInt32(Console.ReadLine());
+            Course course = new Course(courseCode, Convert.ToInt32(courseNumber), Convert.ToInt32(courseCredit));
 
-            Course course = new Course(courseCode, courseNumber, courseCredit);
-            
-            if(student.AddCourse(course)) Console.WriteLine($"{course} added\n");
-            else Console.WriteLine($"Unable to add {course}\n");
+            try
+            {
+                if (student.AddCourse(course))
+                {
+                    Console.WriteLine($"\n{course} added\n");
+                }
+                else
+                {
+                    Console.WriteLine($"\n{course} already exists in this list.\n");
+                    
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine($"\nUnable to add {course}.\nList is full.");
+            }
         }
 
         static void FindCourse(Student student)
         {
-            Console.Write("Enter the 3 letter course code: ");
-            string courseCode = Convert.ToString(Console.ReadLine());
-            
-            Console.Write("Enter the 4 digit course number: ");
-            int courseNumber = Convert.ToInt32(Console.ReadLine());
+            string courseCode = GetValidInput("Enter the 3 letter course code: ", @"\b[a-zA-Z]{3}\b");
+            string courseNumber = GetValidInput("Enter the 4 digit course number: ", @"\b[0-9]{4}\b");
 
-            Course course = student.FindCourse(courseCode, courseNumber);
+            Course? course = student.FindCourse(courseCode, Convert.ToInt32(courseNumber));
 
-            if (course is not null) Console.WriteLine($"Found course: {course}\n");
-            else Console.WriteLine($"No course found matching: {courseCode} {courseNumber}\n");
+            if (course is not null) Console.WriteLine($"\nFound course: {course}\n");
+            else Console.WriteLine($"\nNo course found matching: {courseCode} {courseNumber}\n");
         }
 
         static void RemoveCourse(Student student)
         {
-            Console.Write("Enter the 3 letter course code: ");
-            string courseCode = Console.ReadLine();
-            
-            Console.Write("Enter the 4 digit course number: ");
-            int courseNumber = Convert.ToInt32(Console.ReadLine());
+            string courseCode = GetValidInput("Enter the 3 letter course code: ", @"\b[a-zA-Z]{3}\b");
+            string courseNumber = GetValidInput("Enter the 4 digit course number: ", @"\b[0-9]{4}\b");
 
-            Course course = student.RemoveCourse(courseCode, courseNumber);
+            Course? course = student.RemoveCourse(courseCode, Convert.ToInt32(courseNumber));
             
-            if(course is not null) Console.WriteLine($"Removed course: {course}\n");
-            else Console.WriteLine($"No course to remove matching: {courseCode} {courseNumber}\n");
+            if(course is not null) Console.WriteLine($"\nRemoved course: {course}\n");
+            else Console.WriteLine($"\nNo course to remove matching: {courseCode} {courseNumber}\n");
         }
 
         static void ListCourses(Student student)
@@ -101,22 +128,19 @@ class Program
             if(student.CurrentNumOfCourses > 0) 
             {
                 var courses = student.GetAllCourses();
+                Console.WriteLine($"\nFound {student.CurrentNumOfCourses} courses for {student.StudentName}:");
                 
                 foreach(var course in courses)
                 {
-                    if(course is not null) 
-                    {
-                        Console.WriteLine($"{course}");
-                    }
+                    if(course is not null) Console.WriteLine($"{course}");
                 }
 
                 Console.WriteLine($"Total credits: {student.CalcTotalCredits()}\n");
             }
             else 
             {
-                Console.WriteLine("No courses found.\n");
+                Console.WriteLine("\nNo courses found.\n");
             }
-
         }
     }
 }
