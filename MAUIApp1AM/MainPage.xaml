@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIApp1AM.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="COP2660"
+                SemanticProperties.Hint="Course name"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+            
+            <Label 
+                Text="Austin May"
+                SemanticProperties.Hint="Students name"
+                SemanticProperties.HeadingLevel="Level3"
+                FontSize="14"
+                HorizontalOptions="Center"
+                />
+            
+            <Label 
+                x:Name="CounterLbl"
+                Text="Counter: 0"
+                FontSize="18"
+                HorizontalOptions="Center"
+                />
+
+            <Button
+                x:Name="CountUpBtn"
+                Text="Click me to increase counter"
+                SemanticProperties.Hint="Increments a counter every time you click"
+                Clicked="OnCounterUpClicked"
+                HorizontalOptions="Center"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                />
+            
+            <Button 
+                x:Name="CountDownBtn"
+                Text="Click me to decrease counter"
+                SemanticProperties.Hint="Decrements a counter every time you click"
+                Clicked="OnCounterDownClicked"
+                HorizontalOptions="Center"
+                BackgroundColor="{StaticResource Blue100Accent}"
+                TextColor="White"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
