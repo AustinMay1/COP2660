@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVMPayrollAppAM.View.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{Binding EmployeeID}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{Binding EmployeeName}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{Binding EmployeeHours}"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{Binding EmployeePayRate}"></Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
