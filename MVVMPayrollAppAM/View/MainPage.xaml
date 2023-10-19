@@ -16,6 +16,7 @@
                     HeightRequest="50"
                     VerticalOptions="Center">
                     <Entry
+                        x:Name="EmpIDEntry"
                         Text="{Binding EmployeeID}"
                         HeightRequest="40"
                         WidthRequest="125"
@@ -30,6 +31,7 @@
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
+                        x:Name="EmpNameEntry"
                         Text="{Binding EmployeeName}"
                         HeightRequest="40"
                         WidthRequest="125"
@@ -44,6 +46,7 @@
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
+                        x:Name="EmpHoursEntry"
                         Text="{Binding EmployeeHours}"
                         HeightRequest="40"
                         WidthRequest="125"
@@ -58,6 +61,7 @@
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
+                        x:Name="EmpPayRateEntry"
                         Text="{Binding EmployeePayRate}"
                         HeightRequest="40"
                         WidthRequest="125"
@@ -69,12 +73,16 @@
                     Text="Calculate Pay"
                     Command="{Binding CalculatePayCommand}" />
                 <Button
-                    Text="Clear Input" />
+                    Text="Clear Input"
+                    Command="{Binding ClearInputCommand}"
+                    />
                 <Button
-                    Text="Clear Output" />
+                    Text="Clear Output"
+                    Command="{Binding ClearOutputCommand}"
+                    />
             </HorizontalStackLayout>
             <Editor
-                IsReadOnly="True" Text="{Binding PayOutput}" />
+                HeightRequest="900" IsReadOnly="True" Text="{Binding PayOutput}" />
         </VerticalStackLayout>
     </ScrollView>
 
