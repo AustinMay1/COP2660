@@ -10,7 +10,7 @@
             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10,0, 10">
                 <Label WidthRequest="150" Text="Employee ID" VerticalOptions="Center" Margin="0,0,10,0" />
                 <Frame
-                    BorderColor="White"
+                    BorderColor="{AppThemeBinding Light=Black, Dark=White}"
                     CornerRadius="5"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
@@ -18,71 +18,74 @@
                     <Entry
                         x:Name="EmpIDEntry"
                         Text="{Binding EmployeeID}"
+                        Placeholder="ID #"
                         HeightRequest="40"
-                        WidthRequest="125"
+                        WidthRequest="150"
                         HorizontalOptions="End" />
                 </Frame>
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10,0, 10">
                 <Label WidthRequest="150" Text="Employee Name" VerticalOptions="Center" Margin="0,0,10,0" />
                 <Frame
-                    BorderColor="White"
+                    BorderColor="{AppThemeBinding Light=Black, Dark=White}"
                     CornerRadius="5"
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
                         x:Name="EmpNameEntry"
                         Text="{Binding EmployeeName}"
+                        Placeholder="Full Name"
                         HeightRequest="40"
-                        WidthRequest="125"
+                        WidthRequest="150"
                         HorizontalOptions="End" />
                 </Frame>
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10,0, 10">
                 <Label WidthRequest="150" Text="Employee Hours" VerticalOptions="Center" Margin="0,0,10,0" />
                 <Frame
-                    BorderColor="White"
+                    BorderColor="{AppThemeBinding Light=Black, Dark=White}"
                     CornerRadius="5"
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
                         x:Name="EmpHoursEntry"
                         Text="{Binding EmployeeHours}"
+                        Placeholder="# Of Hours Worked"
                         HeightRequest="40"
-                        WidthRequest="125"
+                        WidthRequest="150"
                         HorizontalOptions="End" />
                 </Frame>
             </HorizontalStackLayout>
             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,10,0, 10">
                 <Label WidthRequest="150" Text="Employee Pay Rate" VerticalOptions="Center" Margin="0,0,10,0" />
                 <Frame
-                    BorderColor="White"
+                    BorderColor="{AppThemeBinding Light=Black, Dark=White}"
                     CornerRadius="5"
                     BackgroundColor="Transparent"
                     HeightRequest="50">
                     <Entry
                         x:Name="EmpPayRateEntry"
                         Text="{Binding EmployeePayRate}"
+                        Placeholder="Amount in USD"
                         HeightRequest="40"
-                        WidthRequest="125"
+                        WidthRequest="150"
                         HorizontalOptions="End" />
                 </Frame>
             </HorizontalStackLayout>
-            <HorizontalStackLayout WidthRequest="300" HorizontalOptions="Center" Margin="0, 10, 0, 10">
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center"
+                                   Margin="0, 10, 0, 0">
                 <Button
                     Text="Calculate Pay"
                     Command="{Binding CalculatePayCommand}" />
                 <Button
                     Text="Clear Input"
-                    Command="{Binding ClearInputCommand}"
-                    />
+                    Command="{Binding ClearInputCommand}" />
                 <Button
                     Text="Clear Output"
-                    Command="{Binding ClearOutputCommand}"
-                    />
+                    Command="{Binding ClearOutputCommand}" />
             </HorizontalStackLayout>
             <Editor
-                HeightRequest="900" IsReadOnly="True" Text="{Binding PayOutput}" />
+                IsReadOnly="True" Text="{Binding PayOutput}" AutoSize="TextChanges" Margin="10, 10" />
         </VerticalStackLayout>
     </ScrollView>
 
