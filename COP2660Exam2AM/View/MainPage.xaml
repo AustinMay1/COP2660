@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="COP2660Exam2AM.View.MainPage"
+             Title="Investment Calculator"
+             >
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="5"
+            Padding="30,0"
+            VerticalOptions="Center">
+            
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="*,*"
+                x:Name="FormGrid"
+                >
+                <Entry
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="0"
+                    Placeholder="Col0Row0"
+                    />
+                <Entry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="0"
+                    Placeholder="Col1Row0"
+                    />
+                <Entry 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Placeholder="Col0Row1"
+                    />
+                <Entry 
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Placeholder="Col1Row1"
+                    />
+            </Grid>
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button Text="Bttn-0" />
+                <Button Text="Bttn-1" />
+                <Button Text="Bttn-2" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
