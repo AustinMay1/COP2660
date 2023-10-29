@@ -6,45 +6,97 @@
              >
 
     <ScrollView>
+        
         <VerticalStackLayout
             Spacing="5"
             Padding="30,0"
-            VerticalOptions="Center">
-            
+            >
+            <Editor Margin="0, 50" AutoSize="TextChanges" IsReadOnly="True" Text="{Binding Output}" />
+            <Frame>
             <Grid
                 ColumnDefinitions="*,*"
                 RowDefinitions="*,*"
                 x:Name="FormGrid"
                 >
+                <Label
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="0"
+                    Text="Investment Amount"
+                    FontSize="12"
+                    />
                 <Entry
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     Grid.Row="0"
                     Placeholder="Col0Row0"
+                    Text="{Binding InvestmentValue}"
+                    Margin="0, 15"
+                    Keyboard="Numeric"
                     />
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="0"
+                    Text="Interest Rate"
+                    FontSize="12"
+                />
                 <Entry
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="0"
                     Placeholder="Col1Row0"
+                    Text="{Binding InterestRate}"
+                    Margin="0, 15"
+                    Keyboard="Numeric"
                     />
+                <Label
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Text="Compound Rate"
+                    FontSize="12"
+                />
                 <Entry 
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
                     Placeholder="Col0Row1"
+                    Text="{Binding CompoundRate}"
+                    Margin="0, 15"
+                    Keyboard="Numeric"
                     />
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Text="Years Invested"
+                    FontSize="12"
+                />
                 <Entry 
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
                     Placeholder="Col1Row1"
+                    Text="{Binding YearsInvested}"
+                    Margin="0, 15"
+                    Keyboard="Numeric"
                     />
             </Grid>
-            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
-                <Button Text="Bttn-0" />
-                <Button Text="Bttn-1" />
-                <Button Text="Bttn-2" />
+                </Frame>
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button 
+                    Command="{Binding CalculateInvestmentCommand}" 
+                    Text="Calculate"
+                    />
+                <Button 
+                    Command="{Binding ClearFormCommand}"           
+                    Text="Clear Form" 
+                    />
+                <Button 
+                    Command="{Binding ClearAllCommand}"            
+                    Text="Clear All" 
+                    />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
