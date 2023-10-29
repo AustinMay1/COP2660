@@ -6,12 +6,17 @@
              >
 
     <ScrollView>
-        
         <VerticalStackLayout
             Spacing="5"
             Padding="30,0"
             >
-            <Editor Margin="0, 50" AutoSize="TextChanges" IsReadOnly="True" Text="{Binding Output}" />
+            <Editor 
+                Margin="0, 50" 
+                AutoSize="TextChanges" 
+                IsReadOnly="True" 
+                Text="{Binding Output}"
+                FontAttributes="Bold"
+                />
             <Frame>
             <Grid
                 ColumnDefinitions="*,*"
@@ -29,7 +34,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     Grid.Row="0"
-                    Placeholder="Col0Row0"
+                    Placeholder="Principal"
                     Text="{Binding InvestmentValue}"
                     Margin="0, 15"
                     Keyboard="Numeric"
@@ -45,7 +50,7 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="0"
-                    Placeholder="Col1Row0"
+                    Placeholder="Interest Rate %"
                     Text="{Binding InterestRate}"
                     Margin="0, 15"
                     Keyboard="Numeric"
@@ -61,7 +66,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
-                    Placeholder="Col0Row1"
+                    Placeholder="Compound Amount"
                     Text="{Binding CompoundRate}"
                     Margin="0, 15"
                     Keyboard="Numeric"
@@ -77,14 +82,14 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="1"
                     Grid.Row="1"
-                    Placeholder="Col1Row1"
+                    Placeholder="Years"
                     Text="{Binding YearsInvested}"
                     Margin="0, 15"
                     Keyboard="Numeric"
                     />
             </Grid>
                 </Frame>
-            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center" Margin="0, 15">
                 <Button 
                     Command="{Binding CalculateInvestmentCommand}" 
                     Text="Calculate"
