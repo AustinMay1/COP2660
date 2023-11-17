@@ -20,6 +20,11 @@
             IsReadOnly="True"
             HeightRequest="150"
             Margin="0, 0, 0, 50"
+            FontAttributes="Bold"
+            FontSize="32"
+            Text="{Binding Output}"
+            VerticalTextAlignment="End"
+            HorizontalTextAlignment="End"
         />
         <!-- Top Row -->
         <Button
@@ -28,6 +33,7 @@
             Text="Clear" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding ClearCommand}"
             />
         <Button
             Grid.Column="1"
@@ -35,6 +41,8 @@
             Text="=" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding CalculateCommand}"
+            CommandParameter="="
             />
         <Button
             Grid.Column="2"
@@ -42,6 +50,8 @@
             Text="/"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding OpCommand}"
+            CommandParameter="/"
             />
         <Button
             Grid.Column="3"
@@ -49,6 +59,8 @@
             Text="*"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding OpCommand}"
+            CommandParameter="*"
             />
         
         <!-- 2nd Row -->
@@ -58,6 +70,8 @@
             Text="7" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="7"
             />
         <Button
             Grid.Column="1"
@@ -65,6 +79,8 @@
             Text="8" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="8"
             />
         <Button
             Grid.Column="2"
@@ -72,6 +88,8 @@
             Text="9" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="9"
             />
         <Button
             Grid.Column="3"
@@ -79,6 +97,8 @@
             Text="-" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding OpCommand}"
+            CommandParameter="-"
             />
         
         <!-- 3rd Row -->
@@ -88,6 +108,8 @@
             Text="4" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="4"
             />
         <Button
             Grid.Column="1"
@@ -95,6 +117,8 @@
             Text="5" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="5"
             />
         <Button
             Grid.Column="2"
@@ -102,6 +126,8 @@
             Text="6" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="6"
             />
         <Button
             Grid.Column="3"
@@ -109,6 +135,8 @@
             Text="+" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding OpCommand}"
+            CommandParameter="+"
             />
         
         <!-- 4th Row -->
@@ -118,6 +146,8 @@
             Text="1" 
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="1"
             />
         <Button
             Grid.Column="1"
@@ -125,6 +155,8 @@
             Text="2"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="2"
             />
         <Button
             Grid.Column="2"
@@ -132,6 +164,8 @@
             Text="3"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="3"
             />
         <Button
             Grid.Column="3"
@@ -140,6 +174,8 @@
             Text="Enter"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding EnterCommand}"
+            CommandParameter="enter"
             />
         
         <!-- Bottom Row -->
@@ -150,11 +186,13 @@
             Text="0"
             FontAttributes="Bold"
             FontSize="20"
+            Command="{Binding InputCommand}"
+            CommandParameter="0"
             />
         <Button
             Grid.Column="2"
             Grid.Row="5"
-            Text="%"
+            Text="=)"
             FontAttributes="Bold"
             FontSize="20"
             />
