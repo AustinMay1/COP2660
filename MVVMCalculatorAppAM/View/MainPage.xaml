@@ -1,36 +1,163 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MVVMCalculatorAppAM.View.MainPage"
-             Title="Calculator App"
-             >
+             Title="Calculator App">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
-
+    <Grid
+        ColumnDefinitions="*,*,*,*"
+        RowDefinitions="*,*,*,*,*,*"
+        ColumnSpacing="5.0"
+        RowSpacing="5.0"
+        Padding="10"
+        x:Name="CalculatorGrid">
+        <!-- Output -->
+        <Editor
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.ColumnSpan="4"
+            IsReadOnly="True"
+            HeightRequest="150"
+            Margin="0, 0, 0, 50"
+        />
+        <!-- Top Row -->
+        <Button
+            Grid.Column="0"
+            Grid.Row="1"
+            Text="Clear" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="1"
+            Text="=" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="1"
+            Text="/"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="3"
+            Grid.Row="1"
+            Text="*"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        
+        <!-- 2nd Row -->
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Text="7" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="2"
+            Text="8" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="2"
+            Text="9" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="3"
+            Grid.Row="2"
+            Text="-" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        
+        <!-- 3rd Row -->
+        <Button
+            Grid.Column="0"
+            Grid.Row="3"
+            Text="4" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="3"
+            Text="5" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="3"
+            Text="6" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="3"
+            Grid.Row="3"
+            Text="+" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        
+        <!-- 4th Row -->
+        <Button
+            Grid.Column="0"
+            Grid.Row="4"
+            Text="1" 
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="4"
+            Text="2"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="4"
+            Text="3"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="3"
+            Grid.Row="4"
+            Grid.RowSpan="2"
+            Text="Enter"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        
+        <!-- Bottom Row -->
+        <Button
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="5"
+            Text="0"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+        <Button
+            Grid.Column="2"
+            Grid.Row="5"
+            Text="%"
+            FontAttributes="Bold"
+            FontSize="20"
+            />
+    </Grid>
+    
 </ContentPage>
