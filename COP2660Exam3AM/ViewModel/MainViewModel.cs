@@ -11,6 +11,7 @@ public partial class MainViewModel
     [ObservableProperty] private int _quantity;
     [ObservableProperty] private double _price;
     [ObservableProperty] private List<InventoryItem> _inventory;
+    private readonly Page _mainPage = Application.Current?.MainPage;
 
     public MainViewModel()
     {
@@ -21,13 +22,50 @@ public partial class MainViewModel
     }
 
     [RelayCommand]
-    public async Task AddItem()
+    private async Task AddItem()
     {
-        InventoryItem item = new InventoryItem();
-        item.ItemName = this.ItemName;
-        item.Quantity = this.Quantity;
-        item.Price = this.Price;
+        if (string.IsNullOrEmpty(this.ItemName) || this.Quantity < 0 || this.Price < 0)
+        {
+            await _mainPage.DisplayAlert("Invalid Field Entry", "One or more data fields contains an invalid value",
+                "OK");
+            ClearAllEntryFields();
+            return;
+        }
+
+        if (ItemInInventory())
+        {
+            await _mainPage.DisplayAlert("Attempt To Add Item Failed", "Item is already in the inventory!", "OK");
+            ClearAllEntryFields();
+            return;
+        }
+
+        var item = new InventoryItem
+        {
+            ItemName = this.ItemName,
+            Quantity = this.Quantity,
+            Price = this.Price
+        };
         Inventory.Add(item);
         Inventory = new List<InventoryItem>(Inventory);
+    }
+
+    private void ClearAllEntryFields()
+    {
+        this.ItemName = string.Empty;
+        this.Quantity = 0;
+        this.Price = 0;
+    }
+
+    private bool ItemInInventory()
+    {
+        foreach (var item in Inventory)
+        {
+            if (item.ItemName == this.ItemName)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
