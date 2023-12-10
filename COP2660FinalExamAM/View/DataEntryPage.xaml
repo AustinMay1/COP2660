@@ -2,11 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COP2660FinalExamAM.View.DataEntryPage"
-             Title="DataEntryPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Add Items">
+    <VerticalStackLayout Padding="20, 20">
+        <Label
+            Text="Enter inventory item data and then click on 'add to inventory' to add item to inventory."
+            Margin="0,0,0,25"
+            />
+        <Label
+                Text="Item Name"
+                FontAttributes="Italic" />
+        <Frame Padding="10" Margin="0, 5">
+            <Entry
+                    Text="{Binding ItemName}" />
+        </Frame>
+        <Label
+                Text="Quantity"
+                FontAttributes="Italic" />
+        <Frame Padding="10" Margin="0, 5">
+            <Entry
+                Text="{Binding Quantity}" Keyboard="Numeric" />
+        </Frame>
+        <Label
+                Text="Price"
+                FontAttributes="Italic" />
+        <Frame Padding="10" Margin="0, 5">
+            <Entry
+                Text="{Binding Price}" Keyboard="Numeric" />
+        </Frame>
+        <Button
+                Text="Add To Inventory" VerticalOptions="Center" Command="{Binding AddItemCommand}" />
     </VerticalStackLayout>
 </ContentPage>
