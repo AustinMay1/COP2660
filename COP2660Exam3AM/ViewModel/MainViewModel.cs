@@ -7,11 +7,11 @@ namespace COP2660Exam3AM.ViewModel;
 [ObservableObject]
 public partial class MainViewModel
 {
-    [ObservableProperty] private string _itemName;
-    [ObservableProperty] private int _quantity;
-    [ObservableProperty] private double _price;
-    [ObservableProperty] private List<InventoryItem> _inventory;
-    private readonly Page _mainPage = Application.Current?.MainPage;
+    [ObservableProperty] private string itemName;
+    [ObservableProperty] private int quantity;
+    [ObservableProperty] private double price;
+    [ObservableProperty] private List<InventoryItem> inventory;
+    private readonly Page mainPage = Application.Current?.MainPage;
 
     public MainViewModel()
     {
@@ -24,17 +24,21 @@ public partial class MainViewModel
     [RelayCommand]
     private async Task AddItem()
     {
-        if (string.IsNullOrEmpty(this.ItemName) || this.Quantity < 0 || this.Price < 0)
+        if (string.IsNullOrEmpty(this.ItemName) || this.Quantity <= 0 || this.Price <= 0)
         {
-            await _mainPage.DisplayAlert("Invalid Field Entry", "One or more data fields contains an invalid value",
+            
+            await mainPage.DisplayAlert("Invalid Field Entry", "One or more data fields contains an invalid value",
                 "OK");
+            
             ClearAllEntryFields();
             return;
         }
 
         if (ItemInInventory())
         {
-            await _mainPage.DisplayAlert("Attempt To Add Item Failed", "Item is already in the inventory!", "OK");
+            
+            await mainPage.DisplayAlert("Attempt To Add Item Failed", "Item is already in the inventory!", "OK");
+            
             ClearAllEntryFields();
             return;
         }
@@ -47,6 +51,7 @@ public partial class MainViewModel
         };
         Inventory.Add(item);
         Inventory = new List<InventoryItem>(Inventory);
+        ClearAllEntryFields();
     }
 
     private void ClearAllEntryFields()
